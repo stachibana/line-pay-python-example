@@ -1,0 +1,17 @@
+{% extends "bootstrap/base.html" %}
+
+{%- block metas %}
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+{%- endblock metas %}
+
+{% block scripts %}
+{{super()}}
+{% endblock %}
+
+{% block title %}Pay Sample{% endblock %}
+
+{% block content %}
+<div class="container">
+  <a href="/reserve"><button id="btn" type="button" class="btn btn-primary btn-block">Pay by LINE Pay</button></a>
+</div>
+{% endblock %}
