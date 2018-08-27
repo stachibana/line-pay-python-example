@@ -53,7 +53,7 @@ class LinePay(object):
         if len(transaction_info) == 0:
             abort(400, 'reservation of this transaction id is not exists')
 
-        url = '{}{}{}'.format(self.DEFAULT_ENDPOINT, self.VERSION, '/{}/confirm'.format(transaction_id))
+        url = '{}{}{}'.format(self.DEFAULT_ENDPOINT, self.VERSION, '/payments/{}/confirm'.format(transaction_id))
         data = {
                 'amount':transaction_info['amount'],
                 'currency':transaction_info['currency'],
@@ -64,17 +64,13 @@ class LinePay(object):
         response = requests.post(url, headers=headers, data=json.dumps(data).encode("utf-8"))
         return transaction_info
 
-# get it in https://pay.line.me/jp/developers/techsupport/sandbox/creation?locale=ja_JP
-chennel_id = '1587958668'
-channel_secret = '520e556b5afa9823bc4461a2a12c945c'
-callback_url = '/callback'
 
-"""
+
 # get these at https://pay.line.me/center/notice/list after creating sandbox sandbox
 chennel_id = YOUR_LINE_PAY_CHANNEL_ID
 channel_secret = YOUR_LINE_PAY_CHANNEL_SECRET
 callback_url = '/callback'
-"""
+
 pay = LinePay(chennel_id, channel_secret, callback_url)
 
 @app.route("/")
